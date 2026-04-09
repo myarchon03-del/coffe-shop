@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en" class="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr" dir="ltr" data-pc-theme_contrast="" data-pc-theme="light">
+  <!-- [Head] start -->
+
+  <head>
+    <title>Kasir page | Träffa Coffee</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Able Pro is trending dashboard template made using Bootstrap 5 design framework. Able Pro is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies."
+    />
+    <meta
+      name="keywords"
+      content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
+
+  </head>
+  <body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+      <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
+        <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 transition-[transform_0.2s_linear] origin-left animate-[2.1s_cubic-bezier(0.65,0.815,0.735,0.395)_0s_infinite_normal_none_running_loader-animate]"></div>
+      </div>
+    </div>
+ <!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+      <div class="navbar-wrapper">
+        <div class="m-header flex items-center py-4 px-6 h-header-height">
+          <a href="../dashboard/index.html" class="b-brand flex items-center gap-3">
+            <!-- ========   Change your logo from here   ============ -->
+            <img src="../assets/images/logo-dark.svg" class="w-8 h-8" alt="logo" />
+            <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">v1.0.0</span>
+          </a>
+        </div>
+        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
+          <div class="card pc-user-card mx-[15px] mb-[15px] bg-theme-sidebaruserbg dark:bg-themedark-sidebaruserbg">
+            <div class="card-body !p-5">
+              <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-semibold text-sm shadow-sm">
+                  J
+                </div>
+                  <div class="ml-4 mr-2 grow">
+                    <h6 class="mb-0">Jonh Smith</h6>
+                    <small>Kasir</small>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-2 p-4">
+              <li>
+                <a href="../dashboard/index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-house"></i></span>
+                  <span class="font-medium">Dashboard</span>
+                </a>
+              </li>
+
+               <li>
+                <a href="../dashboard/riwayat.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  <span class="font-medium">Riwayat Pemesanan</span>
+                </a>
+              </li>
+
+              <li class="px-4 py-2 mt-4">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Authentication</span>
+              </li>
+
+              <li>
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
+                  <span class="font-medium">Log Out</span>
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- [ Header Topbar ] start -->
+    <header class="pc-header">
+      <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow"><!-- [Mobile Media Block] start -->
+        <div class="me-auto pc-mob-drp">
+          <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
+            <!-- ======= Menu collapse Icon ===== -->
+            <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+            <li class="pc-h-item pc-sidebar-popup lg:hidden">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- [ Main Content ] start -->
+    <div class="pc-content">
+  <div class="flex justify-center items-center min-h-[calc(100vh-150px)]">
+    
+    <div class="bg-white p-6 rounded-xl shadow-md border border-gray-100 w-full max-w-md">
+      <h3 class="font-bold text-lg mb-4 pb-3 border-b border-gray-100 text-center">
+        Detail Pesanan
+      </h3>
+
+      <div id="order-table" class="space-y-4">
+        
+        <div class="bg-gray-50 border-dashed border-2 border-gray-300 rounded-lg p-6 font-mono relative overflow-hidden">
+          <div class="absolute -left-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full border-r border-gray-300"></div>
+          <div class="absolute -right-2 top-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full border-l border-gray-300"></div>
+
+          <div class="text-center border-b-2 border-dashed border-gray-300 pb-4 mb-4">
+            <span class="text-[10px] text-gray-500 block uppercase tracking-[0.2em]">Nomor Meja</span>
+            <h4 class="text-4xl font-black text-gray-800">A01</h4>
+          </div>
+
+          <div class="space-y-1 text-[11px] text-gray-600 mb-5 border-b border-gray-200 pb-3">
+            <div class="flex justify-between">
+              <span>No. Pesanan:</span>
+              <span class="font-bold text-gray-800">#TRF-20260408</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Info:</span>
+              <span>Desta</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Waktu:</span>
+              <span>08/04/2026 10:54</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Kasir:</span>
+              <span>Jonh Smith</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Catatan:</span>
+              <span>-</span>
+            </div>
+          </div>
+
+          <div class="space-y-3 mb-6">
+            <div class="flex justify-between text-sm">
+              <div class="grow">
+                <p class="font-bold text-gray-700 uppercase">Kopi Susu Gula Aren</p>
+                <p class="text-xs text-gray-500">2 x Rp 20.000</p>
+              </div>
+              <span class="font-bold text-gray-800">40.000</span>
+            </div>
+            <div class="flex justify-between text-sm border-b border-gray-100 pb-3">
+              <div class="grow">
+                <p class="font-bold text-gray-700 uppercase">Croissant Almond</p>
+                <p class="text-xs text-gray-500">1 x Rp 25.000</p>
+              </div>
+              <span class="font-bold text-gray-800">25.000</span>
+            </div>
+          </div>
+
+          <div class="space-y-2 mb-4 px-1">
+            <div class="flex justify-between text-sm text-gray-600">
+              <span>Subtotal</span>
+              <span>65.000</span>
+            </div>
+            <div class="flex justify-between text-sm text-gray-600">
+              <span>Pajak (12%)</span>
+              <span>7.800</span>
+            </div>
+          </div>
+
+          <div class="border-t-2 border-double border-gray-300 pt-4 mb-6">
+            <div class="flex justify-between items-center">
+              <span class="text-sm font-black text-gray-800">TOTAL AKHIR</span>
+              <span class="text-2xl font-black text-primary-600">Rp 72.800</span>
+            </div>
+          </div>
+
+          <a href="../dashboard/index.html" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-all active:scale-95 shadow-lg shadow-green-100">
+            <i class="fa-solid fa-circle-check"></i>
+            SELESAIKAN PESANAN
+          </a>
+          
+          <p class="text-[10px] text-center text-gray-400 mt-4 italic">
+            *** Terima Kasih Atas Kunjungan Anda ***
+          </p>
+        </div>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+    <footer class="pc-footer">
+      <div class="footer-wrapper container-fluid mx-10">
+        <div class="flex justify-center items-center gap-1.5">
+            <p class="m-0">
+              © Trafa Coffe ♥ by Team Phoenixcoded
+            </p>
+          
+        </div>
+      </div>
+    </footer>
+ 
+    <script src="../assets/js/feather.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    
+
+    
+  </body>
+  <!-- [Body] end -->
+</html>
+

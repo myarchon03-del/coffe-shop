@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" class="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr" dir="ltr" data-pc-theme_contrast="" data-pc-theme="light">
+  <!-- [Head] start -->
+  <head>
+    <title>Laporan Penjualan | Träffa Coffee</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+    <!-- [Font] Family -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
+  </head>
+  <body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+      <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
+        <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 transition-[transform_0.2s_linear] origin-left animate-[2.1s_cubic-bezier(0.65,0.815,0.735,0.395)_0s_infinite_normal_none_running_loader-animate]"></div>
+      </div>
+    </div>
+
+    <!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+      <div class="navbar-wrapper">
+        <div class="m-header flex items-center py-4 px-6 h-header-height">
+          <a href="index.html" class="b-brand flex items-center gap-3">
+            <img src="../assets/images/logo-dark.svg" class="w-8 h-8" alt="logo" />
+            <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">Admin Panel</span>
+          </a>
+        </div>
+        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
+          <div class="card pc-user-card mx-[15px] mb-[15px] bg-theme-sidebaruserbg dark:bg-themedark-sidebaruserbg">
+            <div class="card-body !p-5">
+              <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-semibold text-sm shadow-sm">
+                  J
+                </div>
+                  <div class="ml-4 mr-2 grow">
+                    <h6 class="mb-0">Admin Kece</h6>
+                    <small>Administrator</small>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="w-full md:w-72 bg-white border-r border-gray-100 min-h-screen shadow-sm">
+            <ul class="flex flex-col gap-2 p-4">
+              
+              <li>
+                <a href="index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-house"></i></span>
+                  <span class="font-medium">Dashboard</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="laporan.html" class="flex items-center gap-3 px-4 py-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
+                  <span class="flex justify-center w-6 text-lg text-white group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  <span class="font-medium">Laporan Penjualan</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="managemenu.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-mug-hot"></i></span>
+                  <span class="font-medium">Manajemen Menu</span>
+                </a>
+              </li>
+
+              <li>
+                <a href="managekasir.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-users-gear"></i></span>
+                  <span class="font-medium">Manajemen Kasir</span>
+                </a>
+              </li>
+
+              <li class="px-4 py-2 mt-4">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Authentication</span>
+              </li>
+
+              <li>
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
+                  <span class="font-medium">Log Out</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- [ Header Topbar ] start -->
+    <header class="pc-header">
+      <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow">
+        <div class="me-auto pc-mob-drp">
+          <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
+            <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+            <li class="pc-h-item pc-sidebar-popup lg:hidden">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+      <div class="pc-content">  
+          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+              <div class="flex justify-between items-center mb-6">
+                <h3 class="font-bold text-xl text-gray-800">Data Transaksi Penjualan</h3>
+              </div>
+              
+              <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-500">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
+                    <tr>
+                      <th scope="col" class="px-6 py-3">No</th>
+                      <th scope="col" class="px-6 py-3">Kasir</th>
+                      <th scope="col" class="px-6 py-3">Menu Pesanan</th>
+                      <th scope="col" class="px-6 py-3">Identitas Pelanggan</th>
+                      <th scope="col" class="px-6 py-3">Jumlah Pembayaran</th>
+                      <th scope="col" class="px-6 py-3">Date & Time</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                      <td class="px-6 py-4">1</td>
+                      <td class="px-6 py-4 font-medium text-gray-900">Nisa Aini</td>
+                      <td class="px-6 py-4">2x Kopi Susu Aren, 1x Roti Bakar</td>
+                      <td class="px-6 py-4">Meja A01 (Budi)</td>
+                      <td class="px-6 py-4 font-bold text-gray-800">Rp 65.000</td>
+                      <td class="px-6 py-4">24-Oct-2023 14:30</td>
+                    </tr>
+                    <tr class="bg-white border-b hover:bg-gray-50">
+                      <td class="px-6 py-4">2</td>
+                      <td class="px-6 py-4 font-medium text-gray-900">Jonh Smith</td>
+                      <td class="px-6 py-4">1x Americano, 2x French Fries</td>
+                      <td class="px-6 py-4">Meja B02 (Siti)</td>
+                      <td class="px-6 py-4 font-bold text-gray-800">Rp 50.000</td>
+                      <td class="px-6 py-4">24-Oct-2023 15:05</td>
+                    </tr>
+                    <tr class="bg-white hover:bg-gray-50">
+                      <td class="px-6 py-4">3</td>
+                      <td class="px-6 py-4 font-medium text-gray-900">Nisa Aini</td>
+                      <td class="px-6 py-4">3x V60 Arabica</td>
+                      <td class="px-6 py-4">Meja C03 (Andi)</td>
+                      <td class="px-6 py-4 font-bold text-gray-800">Rp 105.000</td>
+                      <td class="px-6 py-4">24-Oct-2023 16:15</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+          </div>
+      </div>
+    </div>
+
+    <!-- [ Footer ] start -->
+    <footer class="pc-footer">
+      <div class="footer-wrapper container-fluid mx-10">
+        <div class="flex justify-center items-center gap-1.5">
+            <p class="m-0">© Trafa Coffe ♥ by Team Phoenixcoded</p>
+        </div>
+      </div>
+    </footer>
+ 
+    <script src="../assets/js/feather.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

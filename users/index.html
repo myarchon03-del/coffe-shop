@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Träffa Coffee & Eatery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #f3f4f6; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        @keyframes slideUp { from { transform: translateX(-50%) translateY(100%); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
+        @keyframes fadeIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .toast-animate { animation: slideUp 0.3s ease-out forwards; }
+        .menu-card { animation: fadeIn 0.25s ease-out forwards; }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+<main class="w-full max-w-[480px] mx-auto bg-gray-50 min-h-screen relative shadow-2xl flex flex-col overflow-x-hidden">
+
+    <header class="sticky top-0 z-20 bg-white shadow-sm pt-5 pb-3 px-4 rounded-b-2xl">
+        <div class="flex justify-between items-center mb-5">
+            <button onclick="window.location.href='profile.html'" class="text-gray-800 hover:text-sky-500 transition-colors">
+                <i class="ph ph-list text-2xl"></i>
+            </button>
+            <button onclick="window.location.href='search.html'" class="text-gray-800 hover:text-sky-500 transition-colors">
+                <i class="ph ph-magnifying-glass text-2xl"></i>
+            </button>
+        </div>
+        <div class="flex justify-between items-center mb-4">
+            <div>
+                <h1 class="text-xl font-bold text-gray-900">Träffa Coffee & Eatery</h1>
+                <p class="text-xs text-gray-500 mt-0.5">Pesan langsung dari mejamu 🍽️</p>
+            </div>
+            <div class="bg-sky-500 text-white px-3 py-1.5 rounded-xl flex flex-col items-center justify-center shadow-md border-[3px] border-sky-100 flex-shrink-0 min-w-[60px]">
+                <span class="text-[9px] font-bold uppercase tracking-widest opacity-90 mb-[-3px]">Meja</span>
+                <span class="text-xl font-black tracking-wider">A01</span>
+            </div>
+        </div>
+        <div class="flex overflow-x-auto gap-2.5 no-scrollbar pb-1" id="category-container"></div>
+    </header>
+
+    <div class="flex-1 px-4 py-5 space-y-4 pb-28" id="menu-container"></div>
+
+    <div class="fixed bottom-6 w-full max-w-[480px] left-1/2 -translate-x-1/2 px-5 z-30 flex justify-end pointer-events-none">
+        <button onclick="goToCheckout()" class="pointer-events-auto bg-sky-500 hover:bg-sky-600 text-white w-[60px] h-[60px] rounded-full shadow-xl flex items-center justify-center relative transition-transform active:scale-90 flex-shrink-0 border-4 border-white">
+            <i class="ph ph-shopping-cart text-2xl"></i>
+            <span id="cart-badge" class="absolute -top-1 -right-1 bg-red-500 text-white text-[11px] font-bold w-6 h-6 rounded-full flex items-center justify-center border-2 border-white shadow-sm hidden">0</span>
+        </button>
+    </div>
+
+    <div id="toast" class="fixed bottom-24 left-1/2 -translate-x-1/2 bg-gray-900 text-white px-4 py-2 rounded-full text-sm font-medium shadow-lg z-50 hidden toast-animate flex items-center gap-2">
+        <i class="ph-fill ph-check-circle text-green-400 text-lg"></i>
+        <span id="toast-msg">Ditambahkan ke keranjang</span>
+    </div>
+
+</main>
+<script src="menu-data.js"></script>
+<script>
+    const categories = ["Semua","Makanan","Minuman"];
+    let currentCategory = "Semua";
+    let cart = getCart();
+
+    function renderCategories() {
+        const container = document.getElementById('category-container');
+        container.innerHTML = '';
+        categories.forEach(cat => {
+            const isActive = cat === currentCategory;
+            const cls = isActive
+                ? "bg-sky-500 text-white font-semibold shadow-md border border-sky-500"
+                : "bg-white border border-gray-200 text-gray-600 font-medium hover:bg-sky-50 hover:text-sky-500 hover:border-sky-200";
+            const btn = document.createElement('button');
+            btn.className = `px-5 py-2 rounded-full whitespace-nowrap text-sm transition-all duration-200 ${cls}`;
+            btn.innerText = cat;
+            btn.onclick = () => { currentCategory = cat; renderCategories(); renderMenus(); };
+            container.appendChild(btn);
+        });
+    }
+
+    function renderMenus() {
+        const container = document.getElementById('menu-container');
+        container.innerHTML = '';
+        const filtered = currentCategory === "Semua" ? MENU_DATA : MENU_DATA.filter(i => i.category === currentCategory);
+        if (!filtered.length) { container.innerHTML = `<p class="text-center text-gray-500 mt-10">Menu tidak ditemukan.</p>`; return; }
+        filtered.forEach(item => {
+            const inCart = cart.find(c => c.id === item.id);
+            const card = document.createElement('div');
+            card.className = "menu-card flex bg-white p-3.5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] gap-4 items-center border border-gray-100";
+            card.innerHTML = `
+                <div class="relative w-24 h-24 flex-shrink-0">
+                    <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover rounded-xl shadow-sm">
+                </div>
+                <div class="flex-1 min-w-0 py-1">
+                    <h3 class="font-bold text-gray-900 text-base leading-tight truncate">${item.name}</h3>
+                    <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">${item.description}</p>
+                    <div class="flex justify-between items-center mt-2.5">
+                        <span class="font-bold text-blue-600 text-sm">${formatRupiah(item.price)}</span>
+                        ${inCart ? `
+                        <div class="flex items-center gap-2">
+                            <button onclick="changeQty('${item.id}',-1)" class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 border border-blue-200 flex items-center justify-center active:scale-90 hover:bg-blue-200 transition-all"><i class="ph-bold ph-minus text-xs"></i></button>
+                            <span class="text-sm font-bold text-gray-800 w-4 text-center">${inCart.qty}</span>
+                            <button onclick="changeQty('${item.id}',1)" class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center active:scale-90 hover:bg-blue-700 transition-all"><i class="ph-bold ph-plus text-xs"></i></button>
+                        </div>` : `
+                        <button onclick="addToCart('${item.id}','${item.name}')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center transition-all active:bg-blue-600 active:text-white active:scale-90 hover:bg-blue-100">
+                            <i class="ph-bold ph-plus text-sm"></i>
+                        </button>`}
+                    </div>
+                </div>`;
+            container.appendChild(card);
+        });
+    }
+
+    function addToCart(itemId, itemName) {
+        const e = cart.find(i => i.id === itemId);
+        if (e) e.qty += 1; else cart.push({ id: itemId, qty: 1 });
+        syncCart(); renderMenus(); showToast(`${itemName} ditambahkan!`);
+    }
+    function changeQty(itemId, delta) {
+        const idx = cart.findIndex(i => i.id === itemId);
+        if (idx === -1) return;
+        cart[idx].qty += delta;
+        if (cart[idx].qty <= 0) cart.splice(idx, 1);
+        syncCart(); renderMenus();
+    }
+    function syncCart() { saveCart(cart); updateCartBadge(); }
+    function updateCartBadge() {
+        const badge = document.getElementById('cart-badge');
+        const total = cartCount();
+        if (total > 0) { badge.innerText = total > 99 ? '99+' : total; badge.classList.remove('hidden'); }
+        else badge.classList.add('hidden');
+    }
+    let toastTimeout;
+    function showToast(msg) {
+        const t = document.getElementById('toast');
+        document.getElementById('toast-msg').innerText = msg;
+        t.classList.remove('hidden');
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => t.classList.add('hidden'), 2000);
+    }
+    function goToCheckout() {
+        if (cart.length === 0) { showToast('Keranjang masih kosong!'); return; }
+        window.location.href = 'pesanan.html';
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        cart = getCart();
+        renderCategories(); renderMenus(); updateCartBadge();
+    });
+</script>
+</body>
+</html>

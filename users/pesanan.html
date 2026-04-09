@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Pemesan - Träffa Coffee & Eatery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family:'Plus Jakarta Sans',sans-serif; background-color:#f3f4f6; }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(10px)} to{opacity:1;transform:translateY(0)} }
+        .fade-in { animation: fadeIn 0.25s ease-out forwards; }
+    </style>
+</head>
+<body class="antialiased text-gray-800">
+<main class="w-full max-w-[480px] mx-auto bg-gray-50 min-h-screen relative shadow-2xl flex flex-col overflow-x-hidden">
+
+    <header class="sticky top-0 z-20 bg-white shadow-sm pt-5 pb-4 px-4 flex items-center gap-3">
+        <button onclick="window.location.href='index.html'" class="w-10 h-10 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 transition-colors">
+            <i class="ph-bold ph-arrow-left text-lg"></i>
+        </button>
+        <h1 class="text-xl font-bold text-gray-900">Data Pemesan</h1>
+    </header>
+
+    <div class="flex-1 px-4 py-6 space-y-6 pb-32 fade-in">
+        <!-- Form -->
+        <div class="space-y-4">
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
+                <input type="text" id="name" placeholder="Masukkan nama Anda"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white">
+            </div>
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Email <span class="text-gray-400 font-normal">(Opsional)</span></label>
+                <input type="email" id="email" placeholder="contoh@email.com"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Catatan untuk Dapur <span class="text-gray-400 font-normal">(Opsional)</span></label>
+                <textarea id="notes" rows="3" placeholder="Contoh: tidak pedas, es dipisah, dll"
+                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white resize-none"></textarea>
+            </div>
+        </div>
+
+        <!-- Ringkasan Pesanan -->
+        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+            <h2 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
+                <i class="ph-fill ph-receipt text-blue-500 text-lg"></i> Ringkasan Pesanan
+            </h2>
+            <div id="pesanan-item-list" class="space-y-2 mb-3"></div>
+            <div class="border-t border-dashed border-gray-200 pt-3 flex justify-between items-center">
+                <span class="font-semibold text-gray-700">Total Harga</span>
+                <span class="font-bold text-blue-600 text-lg" id="summary-total">Rp 0</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 p-4 bg-white border-t border-gray-200 z-30">
+        <button onclick="submitPesanan()" class="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-xl py-3.5 font-bold text-base shadow-lg transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+            <span>Lanjut ke Checkout</span>
+            <i class="ph-bold ph-caret-right"></i>
+        </button>
+    </div>
+
+</main>
+<script src="menu-data.js"></script>
+<script>
+    let selectedPayment = '';
+
+    function selectPayment(method) {
+        selectedPayment = method;
+        document.querySelectorAll('.pay-btn').forEach(b => {
+            b.classList.remove('border-blue-500','text-blue-600','bg-blue-50');
+            b.classList.add('border-gray-200','text-gray-500');
+        });
+        const active = document.getElementById('pay-' + method);
+        active.classList.add('border-blue-500','text-blue-600','bg-blue-50');
+        active.classList.remove('border-gray-200','text-gray-500');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const cart = getCart();
+        if (!cart.length) { window.location.href = 'index.html'; return; }
+
+        let total = 0;
+        const listEl = document.getElementById('pesanan-item-list');
+        cart.forEach(ci => {
+            const menu = MENU_DATA.find(m => m.id === ci.id);
+            if (!menu) return;
+            const sub = menu.price * ci.qty;
+            total += sub;
+            const row = document.createElement('div');
+            row.className = 'flex justify-between items-center text-sm';
+            row.innerHTML = `
+                <span class="text-gray-600 flex items-center gap-1.5">
+                    <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full text-[10px] font-bold flex items-center justify-center">${ci.qty}</span>
+                    ${menu.name}
+                </span>
+                <span class="font-medium text-gray-800">${formatRupiah(sub)}</span>`;
+            listEl.appendChild(row);
+        });
+        document.getElementById('summary-total').innerText = formatRupiah(total);
+
+        const saved = JSON.parse(localStorage.getItem('resto_buyer_data'));
+        if (saved) {
+            document.getElementById('name').value  = saved.name  || '';
+            document.getElementById('email').value = saved.email || '';
+            document.getElementById('notes').value = saved.notes || '';
+            if (saved.payment) selectPayment(saved.payment);
+        }
+    });
+
+    function submitPesanan() {
+        const nameInput = document.getElementById('name');
+        if (!nameInput.value.trim()) {
+            nameInput.classList.add('ring-2','ring-red-400','border-red-400');
+            nameInput.focus();
+            setTimeout(() => nameInput.classList.remove('ring-2','ring-red-400','border-red-400'), 2000);
+            return;
+        }
+        const buyerData = {
+            name:    nameInput.value.trim(),
+            email:   document.getElementById('email').value.trim(),
+            notes:   document.getElementById('notes').value.trim(),
+            payment: selectedPayment
+        };
+        localStorage.setItem('resto_buyer_data', JSON.stringify(buyerData));
+        window.location.href = 'checkout.html';
+    }
+</script>
+</body>
+</html>

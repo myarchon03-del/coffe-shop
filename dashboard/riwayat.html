@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en" class="preset-1" data-pc-sidebar-caption="true" data-pc-layout="vertical" data-pc-direction="ltr" dir="ltr" data-pc-theme_contrast="" data-pc-theme="light">
+  <!-- [Head] start -->
+
+  <head>
+    <title>Riwayat Pesanan | Träffa Coffee</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta
+      name="description"
+      content="Able Pro is trending dashboard template made using Bootstrap 5 design framework. Able Pro is available in Bootstrap, React, CodeIgniter, Angular,  and .net Technologies."
+    />
+    <meta
+      name="keywords"
+      content="Bootstrap admin template, Dashboard UI Kit, Dashboard Template, Backend Panel, react dashboard, angular dashboard"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- [Favicon] icon -->
+    <link rel="icon" href="../assets/images/favicon.svg" type="image/x-icon" />
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- [Template CSS Files] -->
+    <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
+
+  </head>
+  <body>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
+      <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
+        <div class="loader-fill w-[300px] h-[5px] bg-primary-500 absolute top-0 left-0 transition-[transform_0.2s_linear] origin-left animate-[2.1s_cubic-bezier(0.65,0.815,0.735,0.395)_0s_infinite_normal_none_running_loader-animate]"></div>
+      </div>
+    </div>
+ <!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+      <div class="navbar-wrapper">
+        <div class="m-header flex items-center py-4 px-6 h-header-height">
+          <a href="../dashboard/index.html" class="b-brand flex items-center gap-3">
+            <!-- ========   Change your logo from here   ============ -->
+            <img src="../assets/images/logo-dark.svg" class="w-8 h-8" alt="logo" />
+            <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">v1.0.0</span>
+          </a>
+        </div>
+        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
+          <div class="card pc-user-card mx-[15px] mb-[15px] bg-theme-sidebaruserbg dark:bg-themedark-sidebaruserbg">
+            <div class="card-body !p-5">
+              <div class="flex items-center">
+                <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-semibold text-sm shadow-sm">
+                  J
+                </div>
+                  <div class="ml-4 mr-2 grow">
+                    <h6 class="mb-0">Jonh Smith</h6>
+                    <small>Kasir</small>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <ul class="flex flex-col gap-2 p-4">
+              <li>
+                <a href="../dashboard/index.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-blue-50 hover:text-blue-600 rounded-xl transition-all duration-200 group">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-house"></i></span>
+                  <span class="font-medium">Dashboard</span>
+                </a>
+              </li>
+
+               <li>
+                <a href="../dashboard/riwayat.html" class="flex items-center gap-3 px-4 py-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
+                  <span class="flex justify-center w-6 text-lg"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  <span class="font-medium">Riwayat Pemesanan</span>
+                </a>
+              </li>
+
+              <li class="px-4 py-2 mt-4">
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Authentication</span>
+              </li>
+
+              <li>
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                  <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
+                  <span class="font-medium">Log Out</span>
+                </a>
+              </li>
+            </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- [ Header Topbar ] start -->
+    <header class="pc-header">
+      <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow"><!-- [Mobile Media Block] start -->
+        <div class="me-auto pc-mob-drp">
+          <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
+            <!-- ======= Menu collapse Icon ===== -->
+            <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+            <li class="pc-h-item pc-sidebar-popup lg:hidden">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+                <i class="fa-solid fa-bars"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- [ Main Content ] start -->
+    <div class="pc-container">
+      <div class="pc-content">
+        <div class="gap-x-6">
+          
+          <div class="bg-white p-4 md:p-6 rounded-2xl shadow-sm border border-gray-100">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-gray-100">
+              <div>
+                <h3 class="font-bold text-xl text-gray-800">Riwayat Pesanan</h3>
+                <p class="text-sm text-gray-500 mt-1">Pantau status pesanan pelanggan hari ini.</p>
+              </div>
+
+              <div class="relative w-full sm:w-auto">
+                <select onchange="setFilter(this.value)" class="appearance-none w-full sm:w-48 bg-gray-50 border border-gray-200 text-gray-700 py-2.5 pl-4 pr-10 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm font-medium transition-all cursor-pointer">
+                  <option value="all">Semua Status</option>
+                  <option value="pending">Pending</option>
+                  <option value="done">Selesai</option>
+                </select>
+                <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-500">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="overflow-x-auto rounded-xl border border-gray-100">
+              <table class="w-full text-sm text-left whitespace-nowrap">
+                <thead class="bg-gray-50 text-gray-600 font-medium border-b border-gray-100">
+                  <tr>
+                    <th class="px-4 py-3">No Meja</th>
+                    <th class="px-4 py-3">Total Tagihan</th>
+                    <th class="px-4 py-3">Dibuat</th>
+                    <th class="px-4 py-3">Status</th>
+                  </tr>
+                </thead>
+                <tbody id="order-table" class="divide-y divide-gray-100">
+                  
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-4 font-medium text-gray-900">Meja 04</td>
+                    <td class="px-4 py-4 text-gray-600">Rp 45.000</td>
+                    <td class="px-4 py-4 text-gray-500">10:45 WIB</td>
+                    <td class="px-4 py-4">
+                      <span class="px-2.5 py-1 rounded-md bg-yellow-50 text-yellow-600 text-xs font-semibold border border-yellow-100">Pending</span>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-4 py-4 font-medium text-gray-900">Meja 12</td>
+                    <td class="px-4 py-4 text-gray-600">Rp 120.000</td>
+                    <td class="px-4 py-4 text-gray-500">10:30 WIB</td>
+                    <td class="px-4 py-4">
+                      <span class="px-2.5 py-1 rounded-md bg-green-50 text-green-600 text-xs font-semibold border border-green-100">Selesai</span>
+                    </td>
+                  </tr>
+                  </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ Main Content ] end -->
+    <footer class="pc-footer">
+      <div class="footer-wrapper container-fluid mx-10">
+        <div class="flex justify-center items-center gap-1.5">
+            <p class="m-0">
+              © Trafa Coffe ♥ by Team Phoenixcoded
+            </p>
+          
+        </div>
+      </div>
+    </footer>
+ 
+    <script src="../assets/js/feather.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    
+
+    <script>
+      const orders = [
+          { meja: "A01", total: 50000, created: "08/04/26 18:00", status: "pending" },
+          { meja: "B02", total: 75000, created: "08/04/26 18:10", status: "done" },
+          { meja: "C03", total: 30000, created: "08/04/26 18:20", status: "done" },
+      ];
+
+      let currentFilter = "all";
+
+      function renderTable() {
+          const table = document.getElementById("order-table");
+          table.innerHTML = "";
+
+          const filtered = orders.filter(o => 
+              currentFilter === "all" || o.status === currentFilter
+          );
+
+          filtered.forEach((o, index) => {
+              table.innerHTML += `
+                  <tr class="border-b">
+                      <td class="py-2 font-semibold">${o.meja}</td>
+                      <td>Rp ${o.total.toLocaleString()}</td>
+                      <td>${o.created}</td>
+                      <td>
+                          <span class="px-2 py-1 rounded text-xs ${
+                              o.status === "pending" 
+                              ? "bg-yellow-100 text-yellow-700" 
+                              : "bg-green-100 text-green-700"
+                          }">
+                              ${o.status}
+                          </span>
+                      </td>
+                  </tr>
+              `;
+          });
+      }
+
+      function setFilter(filter) {
+          currentFilter = filter;
+          renderTable();
+      }
+
+      function markDone(index) {
+          orders[index].status = "done";
+          renderTable();
+      }
+
+      renderTable();
+      </script>
+  </body>
+  <!-- [Body] end -->
+</html>
+
