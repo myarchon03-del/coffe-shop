@@ -25,8 +25,12 @@
 
     <div class="flex-1 px-4 py-6 space-y-6 pb-32 fade-in">
         <!-- Form -->
-        <div class="space-y-4">
-            <div>
+         
+        <div>
+            <div class="mb-2">
+                <span class="font-bold text-md">Informasi Pembeli</span>
+            </div>
+            <div class="mb-4">
                 <label class="block text-sm font-semibold text-gray-700 mb-1.5">Nama Lengkap <span class="text-red-500">*</span></label>
                 <input type="text" id="name" placeholder="Masukkan nama Anda"
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white">
@@ -37,24 +41,59 @@
                     class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white">
             </div>
             
-            <div>
-                <label class="block text-sm font-semibold text-gray-700 mb-1.5">Catatan untuk Dapur <span class="text-gray-400 font-normal">(Opsional)</span></label>
-                <textarea id="notes" rows="3" placeholder="Contoh: tidak pedas, es dipisah, dll"
-                    class="w-full border border-gray-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all bg-white resize-none"></textarea>
-            </div>
         </div>
 
         <!-- Ringkasan Pesanan -->
-        <div class="bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
-            <h2 class="text-sm font-bold text-gray-900 mb-3 flex items-center gap-2">
-                <i class="ph-fill ph-receipt text-blue-500 text-lg"></i> Ringkasan Pesanan
-            </h2>
-            <div id="pesanan-item-list" class="space-y-2 mb-3"></div>
-            <div class="border-t border-dashed border-gray-200 pt-3 flex justify-between items-center">
-                <span class="font-semibold text-gray-700">Total Harga</span>
-                <span class="font-bold text-blue-600 text-lg" id="summary-total">Rp 0</span>
+        <div class="max-w-md mx-auto p-6 bg-white rounded-3xl shadow-lg border border-gray-100">
+            <div class="mb-4">
+                <h3 class="text-lg font-bold text-gray-800">Metode Pembayaran</h3>
+                <p class="text-sm text-gray-500">Pilih salah satu metode pembayaran yang tersedia</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+                <label class="relative group cursor-not-allowed opacity-50">
+                    <input type="radio" name="payment" value="online" class="peer hidden" disabled />
+                    <div class="w-full p-4 text-center border-2 border-gray-200 rounded-2xl bg-gray-100 transition-all duration-200">
+                        <div class="flex flex-col items-center gap-2">
+                        <span class="font-bold text-gray-400">Online</span>
+                        </div>
+                    </div>
+                    <div class="absolute w-3/5 text-center font-semibold -top-2 left-1/2 -translate-x-1/2 bg-gray-600 text-white text-[10px] px-2  py-0.5 rounded-full uppercase tracking-wider">
+                        Coming Soon
+                    </div>
+                </label>
+
+                <label class="relative group cursor-pointer">
+                    <input type="radio" name="payment" value="kasir" class="peer hidden" checked />
+                    <div class="w-full p-4 text-center border-2 border-gray-100 rounded-2xl bg-gray-50 transition-all duration-200 
+                                peer-checked:border-blue-400 peer-checked:bg-blue-50 peer-checked:ring-4 peer-checked:ring-blue-100
+                                group-hover:border-blue-200">
+                        <div class="flex flex-col items-center gap-2">
+                        <span class="font-bold text-gray-700 peer-checked:text-blue-700">Bayar di Kasir</span>
+                        </div>
+                    </div>
+                    <div class="absolute top-2 right-2 opacity-0 peer-checked:opacity-100 transition-opacity">
+                        <div class="bg-blue-400 rounded-full p-0.5">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 text-white" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        </div>
+                    </div>
+                </label>
             </div>
         </div>
+
+        <div class="max-w-md mx-auto p-6 bg-white rounded-3xl shadow-lg border border-gray-100">
+            <div class="p-4 flex flex-col justify-center items-center">
+                <div class="images max-w-60">
+                    <img src="../assets/images/users/kasir-icon.png" alt="">
+                </div>
+                <div class="text-center text-sm font-semibold">
+                    <span>Silahkan lanjutkan ke Checkout, dan tunjukkan QR ke Kasir</span>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <div class="fixed bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 p-4 bg-white border-t border-gray-200 z-30">
@@ -123,7 +162,6 @@
         const buyerData = {
             name:    nameInput.value.trim(),
             email:   document.getElementById('email').value.trim(),
-            notes:   document.getElementById('notes').value.trim(),
             payment: selectedPayment
         };
         localStorage.setItem('resto_buyer_data', JSON.stringify(buyerData));
