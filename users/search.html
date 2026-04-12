@@ -37,7 +37,7 @@
     </div>
 
     <!-- Floating Cart Bar -->
-    <div id="floating-cart" class="fixed bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 bg-sky-500 text-white rounded-t-[28px] shadow-[0_-8px_20px_rgba(14,165,233,0.25)] z-40 transition-transform duration-300 ease-in-out cart-hidden pb-safe">
+    <div id="floating-cart" class="fixed bottom-0 w-full max-w-[480px] left-1/2 -translate-x-1/2 bg-sky-500 text-white rounded-t-[28px] shadow-[0_-8px_20px_rgba(14,165,233,0.25)] z-40 transition-transform duration-300 ease-in-out cart-hidden">
         <div class="px-5 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <div class="relative">
@@ -87,7 +87,7 @@
                     <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover">
                 </div>
                 <div class="flex-1 min-w-0 py-0.5">
-                    <span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full ${item.category==='Minuman'?'bg-blue-50 text-blue-500':'bg-blue-50 text-blue-500'}">${item.category}</span>
+                    <span class="text-[9px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-full bg-blue-50 text-blue-500">${item.category}</span>
                     <h3 class="font-bold text-gray-900 text-sm mt-1 truncate">${item.name}</h3>
                     <p class="text-[11px] text-gray-500 mt-0.5 line-clamp-1 leading-relaxed">${item.description}</p>
                     <p class="font-bold text-sky-600 text-[13px] mt-1">${formatRupiah(item.price)}</p>
@@ -132,8 +132,8 @@
         if (total > 0) {
             let price = 0;
             cart.forEach(ci => { const m = MENU_DATA.find(x=>x.id===ci.id); if(m) price += m.price*ci.qty; });
-            document.getElementById('cart-badge-icon').innerText = total;
-            document.getElementById('cart-btn-qty').innerText    = total;
+            document.getElementById('cart-badge-icon').innerText  = total;
+            document.getElementById('cart-btn-qty').innerText     = total;
             document.getElementById('cart-total-price').innerText = formatRupiah(price);
             fc.classList.remove('cart-hidden'); fc.classList.add('cart-visible');
         } else {
