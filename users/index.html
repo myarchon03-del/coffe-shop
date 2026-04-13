@@ -58,12 +58,70 @@
         <span id="toast-msg">Ditambahkan ke keranjang</span>
     </div>
 
+    <!-- Product Modal Backdrop -->
+    <div id="modal-backdrop" class="fixed inset-0 bg-black/50 z-40 hidden opacity-0 transition-opacity duration-300" onclick="closeModal()"></div>
+
+    <!-- Product Modal (Bottom Sheet) -->
+    <div id="product-modal" class="fixed bottom-0 left-1/2 -translate-x-1/2 w-full max-w-[480px] bg-white rounded-t-3xl z-50 transform translate-y-full transition-transform duration-300 flex flex-col max-h-[90vh]">
+        <!-- Handle & Close Area -->
+        <div class="flex justify-center pt-4 pb-2 cursor-pointer" onclick="closeModal()">
+            <div class="w-12 h-1.5 bg-gray-300 rounded-full"></div>
+        </div>
+        
+        <!-- Scrollable Content -->
+        <div class="overflow-y-auto no-scrollbar pb-24">
+            <div class="px-4 pb-4">
+                <img id="modal-img" src="" alt="Product Image" class="w-full h-56 object-cover rounded-2xl bg-gray-100 shadow-sm">
+            </div>
+            <div class="px-5">
+                <div class="flex justify-between items-start gap-4 mb-2">
+                    <h2 id="modal-title" class="text-xl font-bold text-gray-900 leading-tight">Nama Produk</h2>
+                    <span id="modal-price" class="text-lg font-black text-sky-500 whitespace-nowrap">Rp 0</span>
+                </div>
+                <p id="modal-desc" class="text-sm text-gray-500 leading-relaxed">Deskripsi produk...</p>
+
+                <!-- Input Catatan -->
+                <div class="mt-6">
+                    <label class="block text-sm font-bold text-gray-800 mb-2 items-center gap-1.5">
+                        <i class="ph ph-note-pencil text-lg text-gray-500"></i> Catatan Khusus <span class="text-xs font-normal text-gray-400">(Opsional)</span>
+                    </label>
+                    <textarea id="modal-note" rows="2" placeholder="Contoh: Esnya sedikit, gulanya dipisah..." class="w-full border border-gray-200 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all bg-gray-50"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fixed Bottom Actions (Modal) -->
+        <div class="absolute bottom-0 left-0 w-full bg-white border-t border-gray-100 p-4 flex gap-4 items-center rounded-t-2xl shadow-[0_-10px_20px_rgba(0,0,0,0.03)]">
+            <div class="flex items-center gap-3 bg-gray-50 border border-gray-200 p-1.5 rounded-xl">
+                <button onclick="changeModalQty(-1)" class="w-9 h-9 rounded-lg flex items-center justify-center text-gray-600 hover:bg-white hover:shadow-sm transition-all"><i class="ph-bold ph-minus"></i></button>
+                <span id="modal-qty" class="font-bold text-gray-800 min-w-[24px] text-center">1</span>
+                <button onclick="changeModalQty(1)" class="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-white hover:shadow-sm transition-all text-sky-600"><i class="ph-bold ph-plus"></i></button>
+            </div>
+            <button onclick="addFromModalToCart()" class="flex-1 bg-sky-500 hover:bg-sky-600 text-white rounded-xl py-3.5 font-bold text-sm shadow-md transition-transform active:scale-[0.98] flex items-center justify-center gap-2">
+                <span>Tambah Pesanan</span>
+                <span class="text-sky-200 font-normal">•</span>
+                <span id="modal-total-btn">Rp 0</span>
+            </button>
+        </div>
+    </div>
+
 </main>
 <script src="menu-data.js"></script>
 <script>
+    // Fallback if formatRupiah is not in menu-data.js
+    if (typeof formatRupiah !== 'function') {
+        window.formatRupiah = function(angka) {
+            return 'Rp ' + parseInt(angka).toLocaleString('id-ID');
+        };
+    }
+
     const categories = ["Semua","Makanan","Minuman"];
     let currentCategory = "Semua";
-    let cart = getCart();
+    let cart = typeof getCart === 'function' ? getCart() : [];
+
+    // State untuk Modal
+    let currentModalItem = null;
+    let modalQty = 1;
 
     function renderCategories() {
         const container = document.getElementById('category-container');
@@ -84,12 +142,26 @@
     function renderMenus() {
         const container = document.getElementById('menu-container');
         container.innerHTML = '';
+        
+        // Memastikan MENU_DATA tersedia
+        if (typeof MENU_DATA === 'undefined') {
+            container.innerHTML = `<p class="text-center text-red-500 mt-10">Data menu tidak dimuat. Pastikan menu-data.js terhubung.</p>`;
+            return;
+        }
+
         const filtered = currentCategory === "Semua" ? MENU_DATA : MENU_DATA.filter(i => i.category === currentCategory);
         if (!filtered.length) { container.innerHTML = `<p class="text-center text-gray-500 mt-10">Menu tidak ditemukan.</p>`; return; }
+        
         filtered.forEach(item => {
-            const inCart = cart.find(c => c.id === item.id);
+            // Menghitung total qty item ini di keranjang (bisa saja ada beberapa item yang sama tapi beda catatan)
+            const itemInCartList = cart.filter(c => c.id === item.id);
+            const totalQtyInCart = itemInCartList.reduce((sum, current) => sum + current.qty, 0);
+            
             const card = document.createElement('div');
-            card.className = "menu-card flex bg-white p-3.5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] gap-4 items-center border border-gray-100";
+            // Menambahkan cursor-pointer dan memanggil openModal() saat card diklik
+            card.className = "menu-card flex bg-white p-3.5 rounded-2xl shadow-[0_2px_10px_-3px_rgba(6,81,237,0.1)] gap-4 items-center border border-gray-100 cursor-pointer hover:border-sky-200 transition-colors";
+            card.onclick = () => openModal(item.id);
+
             card.innerHTML = `
                 <div class="relative w-24 h-24 flex-shrink-0">
                     <img src="${item.image}" alt="${item.name}" class="w-full h-full object-cover rounded-xl shadow-sm">
@@ -99,13 +171,13 @@
                     <p class="text-[11px] text-gray-500 mt-1 line-clamp-2 leading-relaxed">${item.description}</p>
                     <div class="flex justify-between items-center mt-2.5">
                         <span class="font-bold text-blue-600 text-sm">${formatRupiah(item.price)}</span>
-                        ${inCart ? `
+                        ${totalQtyInCart > 0 ? `
                         <div class="flex items-center gap-2">
-                            <button onclick="changeQty('${item.id}',-1)" class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 border border-blue-200 flex items-center justify-center active:scale-90 hover:bg-blue-200 transition-all"><i class="ph-bold ph-minus text-xs"></i></button>
-                            <span class="text-sm font-bold text-gray-800 w-4 text-center">${inCart.qty}</span>
-                            <button onclick="changeQty('${item.id}',1)" class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center active:scale-90 hover:bg-blue-700 transition-all"><i class="ph-bold ph-plus text-xs"></i></button>
+                            <button onclick="event.stopPropagation(); changeQty('${item.id}',-1)" class="w-7 h-7 rounded-full bg-blue-100 text-blue-600 border border-blue-200 flex items-center justify-center active:scale-90 hover:bg-blue-200 transition-all"><i class="ph-bold ph-minus text-xs"></i></button>
+                            <span class="text-sm font-bold text-gray-800 w-4 text-center">${totalQtyInCart}</span>
+                            <button onclick="event.stopPropagation(); changeQty('${item.id}',1)" class="w-7 h-7 rounded-full bg-blue-600 text-white flex items-center justify-center active:scale-90 hover:bg-blue-700 transition-all"><i class="ph-bold ph-plus text-xs"></i></button>
                         </div>` : `
-                        <button onclick="addToCart('${item.id}','${item.name}')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center transition-all active:bg-blue-600 active:text-white active:scale-90 hover:bg-blue-100">
+                        <button onclick="event.stopPropagation(); addToCart('${item.id}','${item.name}')" class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 border border-blue-200 flex items-center justify-center transition-all active:bg-blue-600 active:text-white active:scale-90 hover:bg-blue-100">
                             <i class="ph-bold ph-plus text-sm"></i>
                         </button>`}
                     </div>
@@ -114,25 +186,119 @@
         });
     }
 
-    function addToCart(itemId, itemName) {
-        const e = cart.find(i => i.id === itemId);
-        if (e) e.qty += 1; else cart.push({ id: itemId, qty: 1 });
-        syncCart(); renderMenus(); showToast(`${itemName} ditambahkan!`);
+    // --- FUNGSI MODAL ---
+    function openModal(itemId) {
+        const item = MENU_DATA.find(i => i.id === itemId);
+        if (!item) return;
+        
+        currentModalItem = item;
+        modalQty = 1;
+
+        // Mengisi data ke modal
+        document.getElementById('modal-img').src = item.image;
+        document.getElementById('modal-title').innerText = item.name;
+        document.getElementById('modal-desc').innerText = item.description;
+        document.getElementById('modal-price').innerText = formatRupiah(item.price);
+        document.getElementById('modal-note').value = ''; // Reset catatan
+        
+        updateModalUI();
+
+        // Tampilkan modal dengan animasi
+        const backdrop = document.getElementById('modal-backdrop');
+        const modal = document.getElementById('product-modal');
+
+        backdrop.classList.remove('hidden');
+        // Trigger reflow untuk memastikan animasi jalan
+        void backdrop.offsetWidth;
+        backdrop.classList.remove('opacity-0');
+        modal.classList.remove('translate-y-full');
     }
+
+    function closeModal() {
+        const backdrop = document.getElementById('modal-backdrop');
+        const modal = document.getElementById('product-modal');
+
+        backdrop.classList.add('opacity-0');
+        modal.classList.add('translate-y-full');
+
+        // Sembunyikan backdrop setelah animasi selesai
+        setTimeout(() => {
+            backdrop.classList.add('hidden');
+        }, 300);
+    }
+
+    function changeModalQty(delta) {
+        modalQty += delta;
+        if (modalQty < 1) modalQty = 1;
+        updateModalUI();
+    }
+
+    function updateModalUI() {
+        document.getElementById('modal-qty').innerText = modalQty;
+        const total = currentModalItem.price * modalQty;
+        document.getElementById('modal-total-btn').innerText = formatRupiah(total);
+    }
+
+    function addFromModalToCart() {
+        if (!currentModalItem) return;
+        const note = document.getElementById('modal-note').value.trim();
+
+        // Cek apakah ada pesanan dengan ID dan catatan yang sama
+        const existingItemIdx = cart.findIndex(i => i.id === currentModalItem.id && i.note === note);
+
+        if (existingItemIdx !== -1) {
+            cart[existingItemIdx].qty += modalQty;
+        } else {
+            cart.push({ id: currentModalItem.id, qty: modalQty, note: note });
+        }
+
+        syncCart(); 
+        renderMenus(); 
+        closeModal();
+        showToast(`${modalQty} ${currentModalItem.name} ditambahkan!`);
+    }
+
+    // --- FUNGSI KERANJANG STANDAR (DARI CARD) ---
+    function addToCart(itemId, itemName) {
+        const e = cart.find(i => i.id === itemId && !i.note); // Cari yg tanpa catatan
+        if (e) e.qty += 1; 
+        else cart.push({ id: itemId, qty: 1, note: '' });
+        
+        syncCart(); 
+        renderMenus(); 
+        showToast(`${itemName} ditambahkan!`);
+    }
+
     function changeQty(itemId, delta) {
+        // Karena satu menu bisa punya berbagai catatan, fungsi quick +/- di card
+        // hanya akan memodifikasi item pertama yang ditemukan di keranjang
         const idx = cart.findIndex(i => i.id === itemId);
         if (idx === -1) return;
+        
         cart[idx].qty += delta;
         if (cart[idx].qty <= 0) cart.splice(idx, 1);
-        syncCart(); renderMenus();
+        
+        syncCart(); 
+        renderMenus();
     }
-    function syncCart() { saveCart(cart); updateCartBadge(); }
+
+    function syncCart() { 
+        if(typeof saveCart === 'function') saveCart(cart); 
+        updateCartBadge(); 
+    }
+
     function updateCartBadge() {
         const badge = document.getElementById('cart-badge');
-        const total = cartCount();
-        if (total > 0) { badge.innerText = total > 99 ? '99+' : total; badge.classList.remove('hidden'); }
-        else badge.classList.add('hidden');
+        // Total seluruh qty di keranjang
+        const total = cart.reduce((sum, item) => sum + item.qty, 0);
+        if (total > 0) { 
+            badge.innerText = total > 99 ? '99+' : total; 
+            badge.classList.remove('hidden'); 
+        } else {
+            badge.classList.add('hidden');
+        }
     }
+
     let toastTimeout;
     function showToast(msg) {
         const t = document.getElementById('toast');
@@ -141,13 +307,16 @@
         clearTimeout(toastTimeout);
         toastTimeout = setTimeout(() => t.classList.add('hidden'), 2000);
     }
+
     function goToCheckout() {
         if (cart.length === 0) { showToast('Keranjang masih kosong!'); return; }
-        window.location.href = 'pesanan.html'; // FIXED: was 'pesan.html'
+        window.location.href = 'pesanan.html';
     }
+
     document.addEventListener('DOMContentLoaded', () => {
-        cart = getCart();
-        renderCategories(); renderMenus(); updateCartBadge();
+        renderCategories(); 
+        renderMenus(); 
+        updateCartBadge();
     });
 </script>
 </body>

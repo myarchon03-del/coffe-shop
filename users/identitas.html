@@ -90,6 +90,10 @@
                 Ringkasan Pesanan
             </h2>
             <div id="order-summary" class="space-y-2 text-sm mb-3 divide-y divide-gray-50"></div>
+            <div class="flex justify-between text-sm">
+                <span class="text-gray-500">Pajak (12%)</span>
+                <span class="font-semibold text-gray-800" id="tax-price">Rp 0</span>
+            </div>
             <div class="border-t border-dashed border-gray-200 pt-3 flex justify-between items-center">
                 <span class="font-bold text-gray-900">Total</span>
                 <span class="font-black text-blue-600 text-base" id="summary-total">Rp 0</span>
@@ -113,7 +117,7 @@
 
 </main>
 <script src="menu-data.js"></script>
-<script>
+<script> 
     document.addEventListener('DOMContentLoaded', () => {
         const cart = getCart();
         if (!cart.length) { window.location.href = 'index.html'; return; }
@@ -133,10 +137,12 @@
                     <span class="w-5 h-5 bg-blue-100 text-blue-600 rounded-full text-[10px] font-bold flex items-center justify-center">${ci.qty}</span>
                     ${menu.name}
                 </span>
-                <span class="font-semibold text-gray-800">${formatRupiah(sub)}</span>`;
+                <span class="font-semibold text-gray-800">${formatRupiah(sub)}</span>
+                `;
             listEl.appendChild(row);
         });
         const tax = total * 0.12;
+        document.getElementById('tax-price').innerText = formatRupiah(tax);
         document.getElementById('summary-total').innerText = formatRupiah(total + tax);
 
         // Pre-fill dari localStorage jika ada
