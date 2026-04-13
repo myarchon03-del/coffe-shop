@@ -84,7 +84,7 @@
               </li>
 
               <li>
-                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
                   <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
                   <span class="font-medium">Log Out</span>
                 </a>
@@ -96,17 +96,17 @@
     </nav>
 
     <!-- [ Header Topbar ] start -->
-    <header class="pc-header">
+   <header class="pc-header bg-white shadow-sm">
       <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow">
         <div class="me-auto pc-mob-drp">
           <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
             <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="sidebar-hide">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
             <li class="pc-h-item pc-sidebar-popup lg:hidden">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="mobile-collapse">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
@@ -130,42 +130,55 @@
                 <table class="w-full text-sm text-left text-gray-500">
                   <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
                     <tr>
-                      <th scope="col" class="px-6 py-3 w-16">No</th>
+                      <th scope="col" class="px-6 py-3 w-16 text-center">No</th>
+                      <th scope="col" class="px-6 py-3 w-28 text-center">Gambar</th>
                       <th scope="col" class="px-6 py-3">Nama Menu</th>
                       <th scope="col" class="px-6 py-3">Kategori</th>
                       <th scope="col" class="px-6 py-3">Harga</th>
                       <th scope="col" class="px-6 py-3 text-center">Aksi</th>
                     </tr>
                   </thead>
-                  <tbody>
+                  <tbody id="menu-table-body">
+                    <!-- Data Dummy 1 -->
                     <tr class="bg-white border-b hover:bg-gray-50">
-                      <td class="px-6 py-4">1</td>
+                      <td class="px-6 py-4 text-center">1</td>
+                      <td class="px-6 py-4 text-center">
+                        <img src="https://ui-avatars.com/api/?name=Kopi+Susu&background=e2e8f0&color=475569" alt="Kopi Susu" class="w-14 h-14 rounded-lg object-cover mx-auto shadow-sm">
+                      </td>
                       <td class="px-6 py-4 font-medium text-gray-900">Kopi Susu Gula Aren</td>
                       <td class="px-6 py-4 font-medium text-gray-900">Minuman</td>
                       <td class="px-6 py-4">Rp 20.000</td>
                       <td class="px-6 py-4 text-center">
-                        <button class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="openEditModal(this)" class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded transition-colors"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded transition-colors" onclick="this.closest('tr').remove()"><i class="fa-solid fa-trash"></i></button>
                       </td>
                     </tr>
+                    <!-- Data Dummy 2 -->
                     <tr class="bg-white border-b hover:bg-gray-50">
-                      <td class="px-6 py-4">2</td>
+                      <td class="px-6 py-4 text-center">2</td>
+                      <td class="px-6 py-4 text-center">
+                        <img src="https://ui-avatars.com/api/?name=Americano&background=e2e8f0&color=475569" alt="Americano" class="w-14 h-14 rounded-lg object-cover mx-auto shadow-sm">
+                      </td>
                       <td class="px-6 py-4 font-medium text-gray-900">Americano Hot/Ice</td>
                       <td class="px-6 py-4 font-medium text-gray-900">Minuman</td>
                       <td class="px-6 py-4">Rp 18.000</td>
                       <td class="px-6 py-4 text-center">
-                        <button class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="openEditModal(this)" class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded transition-colors"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded transition-colors" onclick="this.closest('tr').remove()"><i class="fa-solid fa-trash"></i></button>
                       </td>
                     </tr>
-                    <tr class="bg-white hover:bg-gray-50">
-                      <td class="px-6 py-4">3</td>
+                    <!-- Data Dummy 3 -->
+                    <tr class="bg-white hover:bg-gray-50 border-b">
+                      <td class="px-6 py-4 text-center">3</td>
+                      <td class="px-6 py-4 text-center">
+                        <img src="https://ui-avatars.com/api/?name=French+Fries&background=e2e8f0&color=475569" alt="French Fries" class="w-14 h-14 rounded-lg object-cover mx-auto shadow-sm">
+                      </td>
                       <td class="px-6 py-4 font-medium text-gray-900">French Fries</td>
                       <td class="px-6 py-4 font-medium text-gray-900">Makanan</td>
                       <td class="px-6 py-4">Rp 15.000</td>
                       <td class="px-6 py-4 text-center">
-                        <button class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded"><i class="fa-solid fa-trash"></i></button>
+                        <button onclick="openEditModal(this)" class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded transition-colors"><i class="fa-solid fa-pen-to-square"></i></button>
+                        <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded transition-colors" onclick="this.closest('tr').remove()"><i class="fa-solid fa-trash"></i></button>
                       </td>
                     </tr>
                   </tbody>
@@ -175,60 +188,123 @@
       </div>
     </div>
 
-
+    <!-- Modal Create New Product -->
     <div id="crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div class="relative p-4 w-full max-w-md max-h-full">
-          <!-- Modal content -->
-          <div class="relative bg-white shadow-lg shadow-slate-200 border border-default rounded-base shadow-sm p-4 md:p-6">
-              <!-- Modal header -->
+          <div class="relative bg-white shadow-lg shadow-slate-200 border border-default rounded-base shadow-sm p-4 md:p-6 rounded-xl">
               <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
                   <h3 class="text-lg font-medium text-heading">
-                      Create new product
+                      Tambah Menu Baru
                   </h3>
-                  <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="crud-modal">
+                  <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="crud-modal" id="close-modal-btn">
                       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
                       <span class="sr-only">Close modal</span>
                   </button>
               </div>
-              <!-- Modal body -->
-              <form action="#">
+              <form id="form-tambah-menu" action="#">
                   <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
                       <div class="col-span-2">
-                          <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Nama</label>
-                          <input type="text" name="name" id="name" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Type product name" required="">
+                          <label for="name" class="block mb-2.5 text-sm font-medium text-heading">Nama Menu</label>
+                          <input type="text" name="name" id="name" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-400" placeholder="Masukkan nama menu" required="">
                       </div>
                       <div class="col-span-2 sm:col-span-1">
                           <label for="price" class="block mb-2.5 text-sm font-medium text-heading">Harga</label>
-                          <input type="number" name="price" id="price" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="$2999" required="">
+                          <input type="number" name="price" id="price" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-400" placeholder="Contoh: 20000" required="">
                       </div>
                       <div class="col-span-2 sm:col-span-1">
-                          <label for="category" class="block mb-2.5 text-sm font-medium text-heading">Category</label>
-                          <select id="category" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand px-3 py-2.5 shadow-xs placeholder:text-body">
-                              <option selected="">Pilih Kategori</option>
+                          <label for="category" class="block mb-2.5 text-sm font-medium text-heading">Kategori</label>
+                          <select id="category" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-xs" required="">
+                              <option selected="" disabled value="">Pilih Kategori</option>
                               <option value="Makanan">Makanan</option>
                               <option value="Minuman">Minuman</option>
                           </select>
                       </div>
                       <div class="col-span-2">
                           <label for="gambar" class="block mb-2.5 text-sm font-medium text-heading">Gambar Menu</label>
-                          <input type="file" name="gambar" id="gambar" class="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-3 py-2.5 shadow-xs placeholder:text-body" placeholder="Type product name" required="">
+                          <input type="file" name="gambar" id="gambar" accept="image/*" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs cursor-pointer" required="">
+                          
+                          <div id="preview-container" class="hidden mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                              <p class="text-sm text-green-600 mb-2 font-semibold flex items-center">
+                                  <i class="fa-solid fa-circle-check mr-2"></i> Gambar Berhasil Diupload
+                              </p>
+                              <div class="flex justify-center bg-white border border-gray-200 rounded-lg p-2">
+                                  <img id="image-preview" src="" alt="Pratinjau Gambar" class="max-h-40 object-contain rounded-md">
+                              </div>
+                          </div>
                       </div>
                       <div class="col-span-2">
                           <label for="description" class="block mb-2.5 text-sm font-medium text-heading">Deskripsi Menu</label>
-                          <textarea id="description" rows="4" class="block bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full p-3.5 shadow-xs placeholder:text-body" placeholder="Write product description here"></textarea>                    
+                          <textarea id="description" rows="3" class="block bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-3.5 shadow-xs placeholder:text-gray-400" placeholder="Tulis deskripsi menu di sini"></textarea>                    
                       </div>
                   </div>
                   <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
-                      <button type="submit" class="inline-flex items-center  text-white bg-blue-600 hover:bg-blue-700 rounded-lg box-border border border-transparent focus:ring-4 focus:ring-brand-medium shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">
+                      <button type="submit" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 rounded-lg box-border border border-transparent focus:ring-4 focus:ring-blue-300 shadow-xs font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none transition-colors">
                           <svg class="w-4 h-4 me-1.5 -ms-0.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5"/></svg>
                           Tambah Menu
                       </button>
-                      <button data-modal-hide="crud-modal" type="button" class="text-body bg-neutral-secondary-medium box-border border border-default-medium hover:bg-neutral-tertiary-medium hover:text-heading focus:ring-4 focus:ring-neutral-tertiary shadow-xs font-medium leading-5 rounded-base text-sm px-4 py-2.5 focus:outline-none">Cancel</button>
+                      <button data-modal-hide="crud-modal" type="button" class="text-gray-700 bg-white box-border border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 shadow-xs font-medium leading-5 rounded-lg text-sm px-4 py-2.5 focus:outline-none transition-colors">Batal</button>
                   </div>
               </form>
           </div>
       </div>
-  </div> 
+    </div> 
+
+    <!-- Button Hidden untuk memicu Edit Modal via JS -->
+    <button id="trigger-edit-modal" data-modal-target="edit-crud-modal" data-modal-toggle="edit-crud-modal" class="hidden"></button>
+
+    <!-- Modal Edit Product -->
+    <div id="edit-crud-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+      <div class="relative p-4 w-full max-w-md max-h-full">
+          <div class="relative bg-white shadow-lg shadow-slate-200 border border-default rounded-base shadow-sm p-4 md:p-6 rounded-xl">
+              <div class="flex items-center justify-between border-b border-default pb-4 md:pb-5">
+                  <h3 class="text-lg font-medium text-heading">
+                      Edit Menu
+                  </h3>
+                  <button type="button" class="text-body bg-transparent hover:bg-neutral-tertiary hover:text-heading rounded-base text-sm w-9 h-9 ms-auto inline-flex justify-center items-center" data-modal-hide="edit-crud-modal" id="close-edit-modal-btn">
+                      <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6"/></svg>
+                      <span class="sr-only">Close modal</span>
+                  </button>
+              </div>
+              <form id="form-edit-menu" action="#">
+                  <div class="grid gap-4 grid-cols-2 py-4 md:py-6">
+                      <div class="col-span-2">
+                          <label for="edit-name" class="block mb-2.5 text-sm font-medium text-heading">Nama Menu</label>
+                          <input type="text" name="edit-name" id="edit-name" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-400" placeholder="Masukkan nama menu" required="">
+                      </div>
+                      <div class="col-span-2 sm:col-span-1">
+                          <label for="edit-price" class="block mb-2.5 text-sm font-medium text-heading">Harga</label>
+                          <input type="number" name="edit-price" id="edit-price" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs placeholder:text-gray-400" placeholder="Contoh: 20000" required="">
+                      </div>
+                      <div class="col-span-2 sm:col-span-1">
+                          <label for="edit-category" class="block mb-2.5 text-sm font-medium text-heading">Kategori</label>
+                          <select id="edit-category" class="block w-full px-3 py-2.5 bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 shadow-xs" required="">
+                              <option disabled value="">Pilih Kategori</option>
+                              <option value="Makanan">Makanan</option>
+                              <option value="Minuman">Minuman</option>
+                          </select>
+                      </div>
+                      <div class="col-span-2">
+                          <label for="edit-gambar" class="block mb-2.5 text-sm font-medium text-heading">Ubah Gambar (Opsional)</label>
+                          <input type="file" name="edit-gambar" id="edit-gambar" accept="image/*" class="bg-neutral-secondary-medium border border-gray-300 text-heading text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2.5 shadow-xs cursor-pointer">
+                          
+                          <div id="edit-preview-container" class="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                              <p class="text-sm text-gray-600 mb-2 font-semibold">Gambar Saat Ini:</p>
+                              <div class="flex justify-center bg-white border border-gray-200 rounded-lg p-2">
+                                  <img id="edit-image-preview" src="" alt="Pratinjau Gambar" class="max-h-40 object-contain rounded-md">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="flex items-center space-x-4 border-t border-default pt-4 md:pt-6">
+                      <button type="submit" class="inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 rounded-lg box-border border border-transparent focus:ring-4 focus:ring-blue-300 shadow-xs font-medium leading-5 text-sm px-4 py-2.5 focus:outline-none transition-colors">
+                          <i class="fa-solid fa-floppy-disk mr-2"></i> Simpan Perubahan
+                      </button>
+                      <button data-modal-hide="edit-crud-modal" type="button" class="text-gray-700 bg-white box-border border border-gray-300 hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 shadow-xs font-medium leading-5 rounded-lg text-sm px-4 py-2.5 focus:outline-none transition-colors">Batal</button>
+                  </div>
+              </form>
+          </div>
+      </div>
+    </div>
 
     <!-- [ Footer ] start -->
     <footer class="pc-footer">
@@ -241,5 +317,144 @@
  
     <script src="../assets/js/feather.min.js"></script>
     <script src="../assets/js/script.js"></script>
+
+    <!-- Script Handle Upload dan Tambah/Edit ke Tabel -->
+    <script>
+      // ==========================================
+      // LOGIKA TAMBAH MENU
+      // ==========================================
+      document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('gambar');
+        const previewContainer = document.getElementById('preview-container');
+        const imagePreview = document.getElementById('image-preview');
+        const formMenu = document.getElementById('form-tambah-menu');
+        const tableBody = document.getElementById('menu-table-body');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        
+        let uploadedImageBase64 = ''; 
+
+        imageInput.addEventListener('change', function(event) {
+          const file = event.target.files[0];
+          if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              uploadedImageBase64 = e.target.result;
+              imagePreview.src = uploadedImageBase64;
+              previewContainer.classList.remove('hidden'); 
+            }
+            reader.readAsDataURL(file);
+          } else {
+             resetPreview();
+          }
+        });
+
+        formMenu.addEventListener('submit', function(e) {
+          e.preventDefault(); 
+          const namaMenu = document.getElementById('name').value;
+          const hargaMenu = document.getElementById('price').value;
+          const kategoriMenu = document.getElementById('category').value;
+          const formattedHarga = 'Rp ' + parseInt(hargaMenu).toLocaleString('id-ID');
+          const noUrut = tableBody.children.length + 1;
+
+          const newRow = document.createElement('tr');
+          newRow.className = 'bg-white border-b hover:bg-gray-50';
+          
+          newRow.innerHTML = `
+            <td class="px-6 py-4 text-center">${noUrut}</td>
+            <td class="px-6 py-4 text-center">
+              <img src="${uploadedImageBase64}" alt="${namaMenu}" class="w-14 h-14 rounded-lg object-cover mx-auto shadow-sm">
+            </td>
+            <td class="px-6 py-4 font-medium text-gray-900">${namaMenu}</td>
+            <td class="px-6 py-4 font-medium text-gray-900">${kategoriMenu}</td>
+            <td class="px-6 py-4">${formattedHarga}</td>
+            <td class="px-6 py-4 text-center">
+              <button onclick="openEditModal(this)" class="text-blue-600 hover:text-blue-900 mx-1 bg-blue-50 p-2 rounded transition-colors"><i class="fa-solid fa-pen-to-square"></i></button>
+              <button class="text-red-600 hover:text-red-900 mx-1 bg-red-50 p-2 rounded transition-colors" onclick="this.closest('tr').remove()"><i class="fa-solid fa-trash"></i></button>
+            </td>
+          `;
+
+          tableBody.appendChild(newRow);
+          formMenu.reset();
+          resetPreview();
+          closeModalBtn.click(); 
+        });
+
+        function resetPreview() {
+            uploadedImageBase64 = '';
+            imagePreview.src = '';
+            previewContainer.classList.add('hidden');
+        }
+      });
+
+      // ==========================================
+      // LOGIKA EDIT MENU
+      // ==========================================
+      let currentRowToEdit = null;
+      let editUploadedImageBase64 = '';
+
+      function openEditModal(button) {
+        currentRowToEdit = button.closest('tr');
+        const cells = currentRowToEdit.querySelectorAll('td');
+
+        // Ambil data dari baris tabel saat ini
+        const imgSrc = cells[1].querySelector('img').src;
+        const name = cells[2].innerText;
+        const category = cells[3].innerText;
+        // Hapus "Rp " dan titik untuk mengambil angka asli
+        const priceText = cells[4].innerText.replace(/[^0-9]/g, '');
+
+        // Masukkan ke dalam input form edit
+        document.getElementById('edit-name').value = name;
+        document.getElementById('edit-price').value = priceText;
+        document.getElementById('edit-category').value = category;
+
+        // Set pratinjau gambar saat ini
+        editUploadedImageBase64 = imgSrc;
+        document.getElementById('edit-image-preview').src = imgSrc;
+        
+        // Panggil hidden button untuk membuka modal dengan Flowbite
+        document.getElementById('trigger-edit-modal').click();
+      }
+
+      // Handle perubahan gambar pada Edit Modal
+      document.getElementById('edit-gambar').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file && file.type.startsWith('image/')) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            editUploadedImageBase64 = e.target.result;
+            document.getElementById('edit-image-preview').src = editUploadedImageBase64;
+          }
+          reader.readAsDataURL(file);
+        }
+      });
+
+      // Handle submit form edit
+      document.getElementById('form-edit-menu').addEventListener('submit', function(e) {
+        e.preventDefault();
+        if(!currentRowToEdit) return;
+
+        // Ambil data baru
+        const name = document.getElementById('edit-name').value;
+        const price = document.getElementById('edit-price').value;
+        const category = document.getElementById('edit-category').value;
+        const formattedPrice = 'Rp ' + parseInt(price).toLocaleString('id-ID');
+
+        // Update baris tabel
+        const cells = currentRowToEdit.querySelectorAll('td');
+        const imgElement = cells[1].querySelector('img');
+        
+        imgElement.src = editUploadedImageBase64;
+        imgElement.alt = name;
+        cells[2].innerText = name;
+        cells[3].innerText = category;
+        cells[4].innerText = formattedPrice;
+
+        // Reset file input dan tutup modal
+        document.getElementById('edit-gambar').value = "";
+        document.getElementById('close-edit-modal-btn').click();
+        currentRowToEdit = null;
+      });
+    </script>
   </body>
 </html>

@@ -82,7 +82,7 @@
               </li>
 
               <li>
-                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group">
                   <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
                   <span class="font-medium">Log Out</span>
                 </a>
@@ -94,17 +94,17 @@
     </nav>
 
     <!-- [ Header Topbar ] start -->
-    <header class="pc-header">
+    <header class="pc-header bg-white shadow-sm">
       <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow">
         <div class="me-auto pc-mob-drp">
           <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
             <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="sidebar-hide">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
             <li class="pc-h-item pc-sidebar-popup lg:hidden">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="mobile-collapse">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
@@ -116,6 +116,28 @@
     <!-- [ Main Content ] start -->
     <div class="pc-container">
       <div class="pc-content">  
+
+          <!-- Dashboard Header & Filter -->
+          <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800">Dashboard</h2>
+              <p class="text-gray-500 text-sm mt-1">Ringkasan performa dan penjualan</p>
+            </div>
+            
+            <!-- Filter Group -->
+            <div class="inline-flex bg-gray-100 p-1 rounded-xl border border-gray-200">
+              <button onclick="changeFilter('hari', this)" class="filter-btn px-4 py-2 text-sm font-semibold rounded-lg bg-white text-blue-600 shadow-sm border border-gray-200 transition-all focus:outline-none">
+                Hari Ini
+              </button>
+              <button onclick="changeFilter('minggu', this)" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-200/50 transition-all focus:outline-none border border-transparent">
+                Minggu Ini
+              </button>
+              <button onclick="changeFilter('bulan', this)" class="filter-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-200/50 transition-all focus:outline-none border border-transparent">
+                Bulan Ini
+              </button>
+            </div>
+          </div>
+
           <!-- Dashboard Widgets -->
           <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
             <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center gap-4">
@@ -123,8 +145,8 @@
                 <i class="fa-solid fa-money-bill-wave"></i>
               </div>
               <div>
-                <p class="text-gray-500 text-sm font-medium">Total Pendapatan Hari Ini</p>
-                <h4 class="text-2xl font-bold text-gray-800">Rp 1.250.000</h4>
+                <p class="text-gray-500 text-sm font-medium">Total Pendapatan</p>
+                <h4 id="val-pendapatan" class="text-2xl font-bold text-gray-800">Rp 1.250.000</h4>
               </div>
             </div>
             
@@ -134,7 +156,7 @@
               </div>
               <div>
                 <p class="text-gray-500 text-sm font-medium">Total Transaksi</p>
-                <h4 class="text-2xl font-bold text-gray-800">45 Pesanan</h4>
+                <h4 id="val-transaksi" class="text-2xl font-bold text-gray-800">45 Pesanan</h4>
               </div>
             </div>
 
@@ -144,7 +166,7 @@
               </div>
               <div>
                 <p class="text-gray-500 text-sm font-medium">Menu Terjual</p>
-                <h4 class="text-2xl font-bold text-gray-800">120 Item</h4>
+                <h4 id="val-terjual" class="text-2xl font-bold text-gray-800">120 Item</h4>
               </div>
             </div>
           </div>
@@ -167,5 +189,31 @@
  
     <script src="../assets/js/feather.min.js"></script>
     <script src="../assets/js/script.js"></script>
+    
+    <!-- Script untuk Data Filter Dashboard -->
+    <script>
+      // Data simulasi (mock data)
+      const dataDashboard = {
+        hari: { pendapatan: 'Rp 1.250.000', transaksi: '45 Pesanan', terjual: '120 Item' },
+        minggu: { pendapatan: 'Rp 8.750.000', transaksi: '315 Pesanan', terjual: '840 Item' },
+        bulan: { pendapatan: 'Rp 35.500.000', transaksi: '1.250 Pesanan', terjual: '3.200 Item' }
+      };
+
+      function changeFilter(periode, elementBtn) {
+        // 1. Ubah nilai pada widget
+        document.getElementById('val-pendapatan').innerText = dataDashboard[periode].pendapatan;
+        document.getElementById('val-transaksi').innerText = dataDashboard[periode].transaksi;
+        document.getElementById('val-terjual').innerText = dataDashboard[periode].terjual;
+
+        // 2. Reset tampilan semua tombol filter menjadi tidak aktif
+        const semuaTombol = document.querySelectorAll('.filter-btn');
+        semuaTombol.forEach(btn => {
+          btn.className = 'filter-btn px-4 py-2 text-sm font-medium rounded-lg text-gray-500 hover:text-gray-700 hover:bg-gray-200/50 transition-all focus:outline-none border border-transparent';
+        });
+
+        // 3. Ubah tampilan tombol yang diklik menjadi aktif
+        elementBtn.className = 'filter-btn px-4 py-2 text-sm font-semibold rounded-lg bg-white text-blue-600 shadow-sm border border-gray-200 transition-all focus:outline-none';
+      }
+    </script>
   </body>
 </html>

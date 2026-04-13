@@ -15,7 +15,7 @@
     <!-- [Template CSS Files] -->
     <link rel="stylesheet" href="../assets/css/style.css" id="main-style-link" />
   </head>
-  <body>
+  <body class="bg-gray-50">
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg fixed inset-0 bg-white dark:bg-themedark-cardbg z-[1034]">
       <div class="loader-track h-[5px] w-full inline-block absolute overflow-hidden top-0 bg-primary-500/40">
@@ -26,27 +26,27 @@
     <!-- [ Sidebar Menu ] start -->
     <nav class="pc-sidebar">
       <div class="navbar-wrapper">
-        <div class="m-header flex items-center py-4 px-6 h-header-height">
+        <div class="m-header flex items-center py-4 px-6 h-header-height bg-white">
           <a href="index.html" class="b-brand flex items-center gap-3">
-            <img src="../assets/images/logo-dark.svg" class="w-8 h-8" alt="logo" />
-            <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version">Admin Panel</span>
+            <img src="../assets/images/logo-dark.svg" class="w-8 h-8" alt="logo" onerror="this.src='https://ui-avatars.com/api/?name=TC&background=0D8ABC&color=fff'"/>
+            <span class="badge bg-success-500/10 text-success-500 rounded-full theme-version font-bold">Admin Panel</span>
           </a>
         </div>
-        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5">
-          <div class="card pc-user-card mx-[15px] mb-[15px] bg-theme-sidebaruserbg dark:bg-themedark-sidebaruserbg">
+        <div class="navbar-content h-[calc(100vh_-_74px)] py-2.5 bg-white">
+          <div class="card pc-user-card mx-[15px] mb-[15px] bg-blue-50 rounded-xl">
             <div class="card-body !p-5">
               <div class="flex items-center">
-                <div class="w-8 h-8 rounded-full bg-blue-200 text-blue-700 flex items-center justify-center font-semibold text-sm shadow-sm">
+                <div class="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-lg shadow-sm">
                   J
                 </div>
                   <div class="ml-4 mr-2 grow">
-                    <h6 class="mb-0">Admin Kece</h6>
-                    <small>Administrator</small>
+                    <h6 class="mb-0 font-bold text-gray-800">Admin Kece</h6>
+                    <small class="text-gray-500">Administrator</small>
                   </div>
               </div>
             </div>
           </div>
-          <div class="w-full md:w-72 bg-white border-r border-gray-100 min-h-screen shadow-sm">
+          <div class="w-full md:w-72 bg-white min-h-screen">
             <ul class="flex flex-col gap-2 p-4">
               
               <li>
@@ -58,7 +58,7 @@
 
               <li>
                 <a href="laporan.html" class="flex items-center gap-3 px-4 py-3 bg-blue-600 text-white rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200">
-                  <span class="flex justify-center w-6 text-lg text-white group-hover:text-blue-600 transition-colors"><i class="fa-solid fa-file-invoice-dollar"></i></span>
+                  <span class="flex justify-center w-6 text-lg text-white transition-colors"><i class="fa-solid fa-file-invoice-dollar"></i></span>
                   <span class="font-medium">Laporan Penjualan</span>
                 </a>
               </li>
@@ -82,7 +82,7 @@
               </li>
 
               <li>
-                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" target="_blank">
+                <a href="../pages/login-v1.html" class="flex items-center gap-3 px-4 py-3 text-gray-600 hover:bg-red-50 hover:text-red-600 rounded-xl transition-all duration-200 group" >
                   <span class="flex justify-center w-6 text-lg text-gray-400 group-hover:text-red-600 transition-colors"><i class="fa-solid fa-right-from-bracket"></i></span>
                   <span class="font-medium">Log Out</span>
                 </a>
@@ -94,17 +94,17 @@
     </nav>
 
     <!-- [ Header Topbar ] start -->
-    <header class="pc-header">
+    <header class="pc-header bg-white shadow-sm">
       <div class="header-wrapper flex max-sm:px-[15px] px-[25px] grow">
         <div class="me-auto pc-mob-drp">
           <ul class="inline-flex *:min-h-header-height *:inline-flex *:items-center">
             <li class="pc-h-item pc-sidebar-collapse max-lg:hidden lg:inline-flex">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="sidebar-hide">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="sidebar-hide">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
             <li class="pc-h-item pc-sidebar-popup lg:hidden">
-              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0" id="mobile-collapse">
+              <a href="#" class="pc-head-link ltr:!ml-0 rtl:!mr-0 p-3 hover:bg-gray-100 rounded-lg text-gray-600" id="mobile-collapse">
                 <i class="fa-solid fa-bars"></i>
               </a>
             </li>
@@ -116,60 +116,190 @@
     <!-- [ Main Content ] start -->
     <div class="pc-container">
       <div class="pc-content">  
-          <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-              <div class="flex justify-between items-center mb-6">
-                <h3 class="font-bold text-xl text-gray-800">Data Transaksi Penjualan</h3>
+          <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+              
+              <!-- Header Section -->
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
+                <div>
+                    <h3 class="font-bold text-2xl text-gray-800">Laporan Penjualan</h3>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-xl text-sm font-semibold transition-all shadow-md shadow-blue-500/30 flex items-center gap-2" type="button">
+                    <i class="fa-solid fa-file-export"></i> Export PDF
+                </button>
+              </div>
+
+              <!-- Filter & Search Section -->
+              <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-6 p-4 bg-gray-50 rounded-xl border border-gray-100">
+                <!-- Search -->
+                <div class="relative w-full sm:w-80">
+                  <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                  </div>
+                  <input type="text" id="search-transaction" class="bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 shadow-sm transition-colors" placeholder="Cari menu, kasir, atau pelanggan...">
+                </div>
+
+                <!-- Filters -->
+                <div class="flex items-center gap-3 w-full sm:w-auto">
+                    <div class="flex items-center text-sm text-gray-500">
+                        <i class="fa-solid fa-filter mr-2"></i> Urutkan:
+                    </div>
+                    <select id="filter-sort" class="bg-white border border-gray-200 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full sm:w-48 p-2.5 shadow-sm cursor-pointer hover:border-gray-300 transition-colors">
+                      <option value="terbaru" selected>Terbaru</option>
+                      <option value="terlama">Terlama</option>
+                      <option value="terbanyak">Pembayaran Terbanyak</option>
+                      <option value="terendah">Pembayaran Terendah</option>
+                    </select>
+                </div>
               </div>
               
-              <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-500">
-                  <thead class="text-xs text-gray-700 uppercase bg-gray-50 border-b">
+              <!-- Table Section -->
+              <div class="overflow-x-auto rounded-xl border border-gray-100">
+                <table class="w-full text-sm text-left text-gray-600 whitespace-nowrap">
+                  <thead class="text-xs text-gray-700 uppercase bg-gray-100 border-b border-gray-200">
                     <tr>
-                      <th scope="col" class="px-6 py-3">No</th>
-                      <th scope="col" class="px-6 py-3">Kasir</th>
-                      <th scope="col" class="px-6 py-3">Menu Pesanan</th>
-                      <th scope="col" class="px-6 py-3">Identitas Pelanggan</th>
-                      <th scope="col" class="px-6 py-3">Jumlah Pembayaran</th>
-                      <th scope="col" class="px-6 py-3">Date & Time</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">No</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">Kasir</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">Menu Pesanan</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">Identitas Pelanggan</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">Jumlah Pembayaran</th>
+                      <th scope="col" class="px-6 py-4 font-semibold">Date & Time</th>
+                      <th scope="col" class="px-6 py-4 font-semibold text-center">Action</th>
                     </tr>
                   </thead>
-                  <tbody>
-                    <tr class="bg-white border-b hover:bg-gray-50">
+                  <tbody class="divide-y divide-gray-100">
+                    <tr class="bg-white hover:bg-blue-50/50 transition-colors">
                       <td class="px-6 py-4">1</td>
-                      <td class="px-6 py-4 font-medium text-gray-900">Nisa Aini</td>
-                      <td class="px-6 py-4">2x Kopi Susu Aren, 1x Roti Bakar</td>
-                      <td class="px-6 py-4">Meja A01 (Budi)</td>
-                      <td class="px-6 py-4 font-bold text-gray-800">Rp 65.000</td>
-                      <td class="px-6 py-4">24-Oct-2023 14:30</td>
+                      <td class="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs font-bold">N</div>
+                        Nisa Aini
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md bg-gray-50 text-xs text-gray-600 border border-gray-200 mb-1"><span class="font-bold">2x</span> Kopi Susu Aren</span><br>
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md bg-gray-50 text-xs text-gray-600 border border-gray-200"><span class="font-bold">1x</span> Roti Bakar</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium text-gray-800">Budi</div>
+                        <div class="text-xs text-gray-500">Meja A01</div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="font-bold text-gray-900 bg-green-50 text-green-700 py-1 px-2 rounded-lg border border-green-100">Rp 65.000</span>
+                      </td>
+                      <td class="px-6 py-4 text-xs text-gray-500">
+                        <i class="fa-regular fa-calendar mr-1"></i> 24-Oct-2023<br>
+                        <i class="fa-regular fa-clock mr-1"></i> 14:30
+                      </td>
+                      <td class="px-6 py-4 text-center">
+                        <button class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white border border-blue-200 focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-xs px-3 py-1.5 transition-all inline-flex items-center gap-1">
+                          <i class="fa-solid fa-eye"></i> Detail
+                        </button>
+                      </td>
                     </tr>
-                    <tr class="bg-white border-b hover:bg-gray-50">
+                    
+                    <tr class="bg-white hover:bg-blue-50/50 transition-colors">
                       <td class="px-6 py-4">2</td>
-                      <td class="px-6 py-4 font-medium text-gray-900">Jonh Smith</td>
-                      <td class="px-6 py-4">1x Americano, 2x French Fries</td>
-                      <td class="px-6 py-4">Meja B02 (Siti)</td>
-                      <td class="px-6 py-4 font-bold text-gray-800">Rp 50.000</td>
-                      <td class="px-6 py-4">24-Oct-2023 15:05</td>
+                      <td class="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-xs font-bold">J</div>
+                        John Smith
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md bg-gray-50 text-xs text-gray-600 border border-gray-200 mb-1"><span class="font-bold">1x</span> Americano</span><br>
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md bg-gray-50 text-xs text-gray-600 border border-gray-200"><span class="font-bold">2x</span> French Fries</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium text-gray-800">Siti</div>
+                        <div class="text-xs text-gray-500">Meja B02</div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="font-bold text-gray-900 bg-green-50 text-green-700 py-1 px-2 rounded-lg border border-green-100">Rp 50.000</span>
+                      </td>
+                      <td class="px-6 py-4 text-xs text-gray-500">
+                        <i class="fa-regular fa-calendar mr-1"></i> 24-Oct-2023<br>
+                        <i class="fa-regular fa-clock mr-1"></i> 15:05
+                      </td>
+                      <td class="px-6 py-4 text-center">
+                        <button class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white border border-blue-200 focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-xs px-3 py-1.5 transition-all inline-flex items-center gap-1">
+                          <i class="fa-solid fa-eye"></i> Detail
+                        </button>
+                      </td>
                     </tr>
-                    <tr class="bg-white hover:bg-gray-50">
+
+                    <tr class="bg-white hover:bg-blue-50/50 transition-colors">
                       <td class="px-6 py-4">3</td>
-                      <td class="px-6 py-4 font-medium text-gray-900">Nisa Aini</td>
-                      <td class="px-6 py-4">3x V60 Arabica</td>
-                      <td class="px-6 py-4">Meja C03 (Andi)</td>
-                      <td class="px-6 py-4 font-bold text-gray-800">Rp 105.000</td>
-                      <td class="px-6 py-4">24-Oct-2023 16:15</td>
+                      <td class="px-6 py-4 font-medium text-gray-900 flex items-center gap-2">
+                        <div class="w-6 h-6 rounded-full bg-pink-100 text-pink-600 flex items-center justify-center text-xs font-bold">N</div>
+                        Nisa Aini
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="inline-flex items-center gap-1.5 py-1 px-2 rounded-md bg-gray-50 text-xs text-gray-600 border border-gray-200"><span class="font-bold">3x</span> V60 Arabica</span>
+                      </td>
+                      <td class="px-6 py-4">
+                        <div class="font-medium text-gray-800">Andi</div>
+                        <div class="text-xs text-gray-500">Meja C03</div>
+                      </td>
+                      <td class="px-6 py-4">
+                        <span class="font-bold text-gray-900 bg-green-50 text-green-700 py-1 px-2 rounded-lg border border-green-100">Rp 105.000</span>
+                      </td>
+                      <td class="px-6 py-4 text-xs text-gray-500">
+                        <i class="fa-regular fa-calendar mr-1"></i> 24-Oct-2023<br>
+                        <i class="fa-regular fa-clock mr-1"></i> 16:15
+                      </td>
+                      <td class="px-6 py-4 text-center">
+                        <button class="text-blue-600 bg-blue-50 hover:bg-blue-600 hover:text-white border border-blue-200 focus:ring-4 focus:outline-none focus:ring-blue-100 font-medium rounded-lg text-xs px-3 py-1.5 transition-all inline-flex items-center gap-1">
+                          <i class="fa-solid fa-eye"></i> Detail
+                        </button>
+                      </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
+
+              <!-- Pagination Section -->
+              <div class="flex flex-col sm:flex-row justify-between items-center mt-6 gap-4 border-t border-gray-100 pt-6">
+                <span class="text-sm text-gray-500">
+                  Menampilkan <span class="font-semibold text-gray-900">1</span> ke <span class="font-semibold text-gray-900">3</span> dari <span class="font-semibold text-gray-900">24</span> Data
+                </span>
+                
+                <nav aria-label="Pagination">
+                  <ul class="inline-flex -space-x-px text-sm shadow-sm rounded-lg">
+                    <li>
+                      <a href="#" class="flex items-center justify-center px-3 h-9 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                        <i class="fa-solid fa-chevron-left text-xs mr-2"></i> Prev
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" aria-current="page" class="flex items-center justify-center px-4 h-9 text-blue-600 border border-blue-300 bg-blue-50 hover:bg-blue-100 font-semibold transition-colors">1</a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex items-center justify-center px-4 h-9 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-blue-600 transition-colors">2</a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex items-center justify-center px-4 h-9 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-blue-600 transition-colors">3</a>
+                    </li>
+                    <li>
+                      <span class="flex items-center justify-center px-4 h-9 leading-tight text-gray-400 bg-white border border-gray-300">...</span>
+                    </li>
+                    <li>
+                      <a href="#" class="flex items-center justify-center px-4 h-9 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-50 hover:text-blue-600 transition-colors">8</a>
+                    </li>
+                    <li>
+                      <a href="#" class="flex items-center justify-center px-3 h-9 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-50 hover:text-blue-600 transition-colors">
+                        Next <i class="fa-solid fa-chevron-right text-xs ml-2"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+
           </div>
       </div>
     </div>
 
     <!-- [ Footer ] start -->
-    <footer class="pc-footer">
-      <div class="footer-wrapper container-fluid mx-10">
-        <div class="flex justify-center items-center gap-1.5">
-            <p class="m-0">© Trafa Coffe ♥ by Team Phoenixcoded</p>
+    <footer class="pc-footer bg-white border-t border-gray-100 mt-auto md:ml-72 transition-all relative z-10">
+      <div class="footer-wrapper container mx-auto px-6 py-4">
+        <div class="flex flex-col md:flex-row justify-between items-center gap-2 text-sm text-gray-500">
+            <p class="m-0">© 2024 Träffa Coffee. All rights reserved.</p>
+            <p class="m-0">Crafted with <i class="fa-solid fa-heart text-red-500"></i> by Phoenixcoded</p>
         </div>
       </div>
     </footer>
